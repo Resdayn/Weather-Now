@@ -1,26 +1,44 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <section id="app-body">
+    <the-title></the-title>
+    <search-component @sendData="displayData"></search-component>
+    <weather-display :weatherData="this.weatherData"></weather-display>
+  </section>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import SearchComponent from "./components/SearchComponent.vue";
+import WeatherDisplay from "./components/WeatherDisplay.vue"
 
 export default {
-  name: 'App',
+  data() {
+    return {
+      weatherData: {}
+    }
+  },
+  name: "App",
   components: {
-    HelloWorld
-  }
-}
+    SearchComponent,
+    WeatherDisplay
+  },
+  methods: {
+    displayData(data) {
+      console.log("Displaying Data from App.vue");
+      console.log(data);
+      this.weatherData = data;
+    },
+  },
+};
 </script>
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+#app-body {
+  width: 100vw,
 }
 </style>
