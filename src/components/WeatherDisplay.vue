@@ -6,10 +6,10 @@
       <img :src="getIcon">
     </div>
     <div id="weatherDescription">{{ weatherDescription }}</div>
-    <div id="temperatureColumn">Temperature</div>
-    <div id="humidityColumn">Humidity</div>
-    <div id="windColumn">Wind Speed</div>
-    <div id="cloudColumn">Clouds</div>
+    <div id="temperatureColumn">Temperature<hr></div>
+    <div id="humidityColumn">Humidity<hr></div>
+    <div id="windColumn">Wind Speed<hr></div>
+    <div id="cloudColumn">Clouds<hr></div>
     <div id="currentTemp">Current: {{ Math.round(weatherData.temperature) }}°C</div>
     <div id="feelsLike">Feels like {{ Math.round(weatherData.feels_like) }}°C</div>
     <div id="humidity">{{ weatherData.humidity }}%</div>
@@ -96,5 +96,22 @@ export default {
 }
 #cloud {
   grid-area: cloud;
+}
+@media screen and (max-width:400px) {
+  #weatherDisplay{
+    grid-template-areas:
+    "cityName"
+    "icon"
+    "weatherDescription"
+    "temperatureColumn"
+    "currentTemp"
+    "feelsLike"
+    "humidityColumn"
+    "humidity"
+    "windColumn"
+    "wind"
+    "cloudColumn"
+    "cloud"
+  }
 }
 </style>
