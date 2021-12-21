@@ -81,4 +81,10 @@ p {
   margin-bottom: 1rem;
   color: red;
 }
+
+@media screen and (max-width:400px) {
+  input {
+    width: 80vw;
+  }
+}
 </style>
