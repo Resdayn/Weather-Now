@@ -2,16 +2,16 @@
 <template>
   <section id="weatherDisplay">
     <div id="cityName">{{ weatherData.name }}</div>
-    <div id="icon">
+    <div id="currentWeatherIcon">
       <img :src="getIcon">
     </div>
     <div id="weatherDescription">{{ weatherDescription }}</div>
-    <div id="temperatureColumn">Temperature<hr></div>
-    <div id="humidityColumn">Humidity<hr></div>
-    <div id="windColumn">Wind Speed<hr></div>
-    <div id="cloudColumn">Clouds<hr></div>
+    <div id="temperatureColumn"><img class="icon" src="../assets/icons/temp.png"> Temperature</div>
+    <div id="humidityColumn"><img class="icon" src="../assets/icons/humidity.png"> Humidity</div>
+    <div id="windColumn"><img class="icon" src="../assets/icons/wind.png"> Wind Speed</div>
+    <div id="cloudColumn"><img class="icon" src="../assets/icons/clouds.png"> Clouds</div>
     <div id="currentTemp">Current: {{ Math.round(weatherData.temperature) }}°C</div>
-    <div id="feelsLike">Feels like {{ Math.round(weatherData.feels_like) }}°C</div>
+    <div id="feelsLike">Feels like: {{ Math.round(weatherData.feels_like) }}°C</div>
     <div id="humidity">{{ weatherData.humidity }}%</div>
     <div id="wind">{{ weatherData.wind_speed }} m/s</div>
     <div id="cloud">{{ weatherData.clouds }}%</div>
@@ -41,6 +41,9 @@ export default {
 </script>
 
 <style scoped>
+* {
+  color: rgb(240, 231, 231);
+}
 #weatherDisplay {
   display: grid;
   grid-template-areas:
@@ -54,18 +57,19 @@ export default {
   justify-content: center;
   gap: 2rem;
   font-size: 30px;
+  margin-bottom: 3rem;
 }
 
 #cityName {
   grid-area: cityName;
   font-size: 40px;
 }
-#icon {
+#currentWeatherIcon {
   grid-area: icon;
 }
-#icon img {
-  width: 200px;
-  height: 200px;
+#currentWeatherIcon img {
+  width: 150px;
+  height: 150px;
 }
 #weatherDescription {
   grid-area: weatherDescription;
@@ -97,21 +101,28 @@ export default {
 #cloud {
   grid-area: cloud;
 }
+
+.icon {
+  width: 30px;
+  height: 30px;
+}
 @media screen and (max-width:400px) {
   #weatherDisplay{
     grid-template-areas:
-    "cityName"
-    "icon"
-    "weatherDescription"
-    "temperatureColumn"
-    "currentTemp"
-    "feelsLike"
-    "humidityColumn"
-    "humidity"
-    "windColumn"
-    "wind"
-    "cloudColumn"
-    "cloud"
+    "cityName cityName"
+    "icon icon"
+    "weatherDescription weatherDescription"
+    "temperatureColumn currentTemp"
+    "temperatureColumn feelsLike"
+    "humidityColumn humidity"
+    "windColumn wind"
+    "cloudColumn cloud"
   }
+  #weatherDisplay * {
+    font-size: 20px;
+  }
+  #cityName {
+  font-size: 35px;
+}
 }
 </style>
