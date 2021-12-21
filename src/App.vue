@@ -1,8 +1,10 @@
+<!-- App.vue will pass the data received from SearchComponent to WeatherDisplay as a prop.
+The WeatherDisplay component won't be shown until the sendData listener has been triggered at least one time  -->
 <template>
   <section id="app-body">
     <the-title></the-title>
     <search-component @sendData="displayData"></search-component>
-    <weather-display :weatherData="this.weatherData"></weather-display>
+    <weather-display v-if="showDisplay" :weatherData="this.weatherData"></weather-display>
   </section>
 </template>
 
@@ -13,7 +15,8 @@ import WeatherDisplay from "./components/WeatherDisplay.vue"
 export default {
   data() {
     return {
-      weatherData: {}
+      weatherData: {},
+      showDisplay: false
     }
   },
   name: "App",
@@ -23,6 +26,7 @@ export default {
   },
   methods: {
     displayData(data) {
+      this.showDisplay = true;
       console.log("Displaying Data from App.vue");
       console.log(data);
       this.weatherData = data;
