@@ -78,8 +78,8 @@ button {
 }
 
 p {
-  margin-bottom: 1rem;
-  color: red;
+  margin-bottom: 2rem;
+  color: rgb(235, 77, 77);
 }
 
 @media screen and (max-width:400px) {
