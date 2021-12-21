@@ -41,8 +41,12 @@ export default {
   padding: 0;
   box-sizing: border-box;
 }
-
+body {
+  min-height: 100vh;
+  background: linear-gradient(to bottom, #15547D 0%, #1C6EA4 56%, #7AC7E3 100%);
+}
 #app-body {
-  width: 100vw,
+  width: 100vw;
+  height: 100%;
 }
 </style>
