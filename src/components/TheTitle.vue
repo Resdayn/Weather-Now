@@ -11,6 +11,7 @@ h1 {
   place-items: center;
   justify-content: center;
   font-size: 48px;
-  margin: 2rem 0;
+  padding: 2rem 0;
+  color: rgb(240, 231, 231);
 }
 </style>
