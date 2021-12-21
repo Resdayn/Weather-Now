@@ -1,6 +1,10 @@
+<!-- This component receives the object weatherData from App.vue and displays the information and icon -->
 <template>
   <section id="weatherDisplay">
     <div id="cityName">{{ weatherData.name }}</div>
+    <div id="icon">
+      <img :src="getIcon">
+    </div>
     <div id="weatherDescription">{{ weatherDescription }}</div>
     <div id="temperatureColumn">Temperature</div>
     <div id="humidityColumn">Humidity</div>
@@ -19,6 +23,7 @@ export default {
   props: ["weatherData"],
   computed: {
     weatherDescription() {
+      // To capitalize the first letter of each word in the weather description
       const description = this.weatherData.description;
       const words = description.split(" ");
       for (let i = 0; i < words.length; i++) {
@@ -27,6 +32,10 @@ export default {
       const descriptionCapitalized = words.join(" ");
       return descriptionCapitalized;
     },
+    getIcon(){
+      // the require is needed to let know webpack that this is a url.
+      return require(`../assets/icons/${this.weatherData.icon}.png` );
+    }
   },
 };
 </script>
@@ -36,6 +45,7 @@ export default {
   display: grid;
   grid-template-areas:
     "cityName cityName cityName cityName"
+    "icon icon icon icon"
     "weatherDescription weatherDescription weatherDescription weatherDescription"
     "temperatureColumn humidityColumn windColumn cloudColumn"
     "currentTemp humidity wind cloud"
@@ -49,6 +59,13 @@ export default {
 #cityName {
   grid-area: cityName;
   font-size: 40px;
+}
+#icon {
+  grid-area: icon;
+}
+#icon img {
+  width: 200px;
+  height: 200px;
 }
 #weatherDescription {
   grid-area: weatherDescription;
