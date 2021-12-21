@@ -43,15 +43,15 @@ export default {
           humidity: cityWeather.main.humidity,
           wind_speed: cityWeather.wind.speed,
           clouds: cityWeather.clouds.all,
+          icon: cityWeather.weather[0].icon
         };
-        console.log("Displaying data from SearchComponent.vue");
-        console.log(requiredWeatherData);
         this.$emit("sendData", requiredWeatherData);
       } catch (error) {
         console.log(error);
       }
     },
     cleanNotFound() {
+      // removes the "can't find city" error message for each keystroke"
       this.notFound = false;
     },
   },
