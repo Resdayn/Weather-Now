@@ -107,11 +107,12 @@ export default {
 #currentTemp {
   grid-area: currentTemp;
 }
-@import url('https://fonts.googleapis.com/css2?family=Cairo&display=swap');
-#currentTemp h3{
-  font-family: 'Cairo', sans-serif;
+@import url("https://fonts.googleapis.com/css2?family=Cairo&display=swap");
+#currentTemp h3 {
+  font-family: "Cairo", sans-serif;
   color: #c5d9f7;
-  font-size: 100px;
+  font-size: 150px;
+  padding-left: 20%;
 }
 #box {
   display: flex;
@@ -156,11 +157,6 @@ export default {
   margin: 0px 2rem;
 }
 
-#windColumn,
-#humidityColumn,
-#temperatureColumn,
-#cloudColumn {
-}
 .box-title {
   color: #97a9c7;
   margin-bottom: 1rem;
@@ -183,27 +179,33 @@ export default {
   height: 30px;
   margin-bottom: 1rem;
 }
-@media screen and (max-width: 900px){
+@media screen and (max-width: 900px) {
   #box {
     transform: scale(0.9);
   }
 }
-@media screen and (max-width: 600px){
+@media screen and (max-width: 600px) {
   #box {
     transform: scale(0.7);
   }
 }
 
-@media screen and (max-width: 500px){
+@media screen and (max-width: 500px) {
   #box {
     flex-direction: column;
-    width: 80vw;
+    transform: scale(1);
+    width: 60vw;
+  }
+  #windColumn,
+  #humidityColumn,
+  #temperatureColumn,
+  #cloudColumn {
+    margin: 2rem 0px;
   }
 }
-@media screen and (max-width: 450px){
+@media screen and (max-width: 450px) {
   #box {
-    flex-direction: column;
-    width: 90vw;
+    min-width: 250px;
   }
 }
 </style>
