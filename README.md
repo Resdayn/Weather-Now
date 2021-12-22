@@ -1,4 +1,14 @@
-# weather-app
+# Weather Now
+
+<img width="240px" height="500px" src="./src/assets/sample.png">
+
+This is a simple weather app made with Vue. 
+
+Due to limitations of the free tier API (https://openweathermap.org/api) it only displays the current time.
+
+A <b>live demo</b> can be accessed <a href="https://determined-bose-20713e.netlify.app/">here</a>.
+
+*** 
 
 ## Project setup
 ```
