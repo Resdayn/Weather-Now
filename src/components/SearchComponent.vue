@@ -10,7 +10,6 @@ from the API and a new object is created with only the required data. This objec
       placeholder="Type a city"
     />
     <p v-if="notFound">Sorry, the city "{{ this.cityInput }}" can't be found</p>
-    <button @click="submitCity">Submit</button>
   </section>
 </template>
 
@@ -43,7 +42,7 @@ export default {
           humidity: cityWeather.main.humidity,
           wind_speed: cityWeather.wind.speed,
           clouds: cityWeather.clouds.all,
-          icon: cityWeather.weather[0].icon
+          icon: cityWeather.weather[0].icon,
         };
         this.$emit("sendData", requiredWeatherData);
       } catch (error) {
@@ -69,8 +68,16 @@ section {
 
 input {
   width: 20vw;
-  height: 2rem;
-  margin-bottom: 2rem;
+  height: 3rem;
+  border: 0;
+  border-bottom: 2px solid #2C4373;
+  text-align: center;
+  font-size: 30px;
+  background: transparent;
+  color: #bbdefb;
+}
+input:focus {
+  outline: none;
 }
 
 button {
@@ -81,8 +88,12 @@ p {
   margin-bottom: 2rem;
   color: rgb(235, 77, 77);
 }
-
-@media screen and (max-width:400px) {
+@media screen and (max-width: 1700px) {
+  input {
+    width: 50vw;
+  }
+}
+@media screen and (max-width: 700px) {
   input {
     width: 80vw;
   }
