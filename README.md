@@ -1,6 +1,6 @@
 # Weather Now
 
-<center><img width="240px" height="500px" src="./src/assets/sample.png"></center>
+<p align="center"><img width="240px" height="500px" src="./src/assets/sample.png"></p>
 
 This is a simple weather app made with Vue. 
 
