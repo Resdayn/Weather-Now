@@ -20,6 +20,7 @@ export default {
     return {
       cityInput: "",
       notFound: false,
+      token: require("../../token")
     };
   },
   methods: {
@@ -27,7 +28,7 @@ export default {
       this.notFound = false;
       try {
         const cityWeather = await fetch(
-          `https://api.openweathermap.org/data/2.5/weather?q=${this.cityInput}&units=metric&APPID=ec8cf6e7dcf475ec14f176624d9fd3ed`
+          `https://api.openweathermap.org/data/2.5/weather?q=${this.cityInput}&units=metric&APPID=${this.token.config.token}`
         ).then((value) => value.json());
         if (Object.keys(cityWeather).length === 2) {
           this.notFound = true;
