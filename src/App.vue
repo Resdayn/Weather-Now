@@ -43,7 +43,7 @@ export default {
 }
 body {
   min-height: 100vh;
-  background: linear-gradient(to bottom, #15547D 0%, #1C6EA4 56%, #7AC7E3 100%);
+  background: linear-gradient(to bottom, #63A1F2 0%, #67B0F3 50%, #577EF2 100%);
 }
 #app-body {
   width: 100vw;

@@ -1,20 +1,38 @@
 <!-- This component receives the object weatherData from App.vue and displays the information and icon -->
 <template>
   <section id="weatherDisplay">
+    <div id="date">{{ todayDate }}</div>
     <div id="cityName">{{ weatherData.name }}</div>
     <div id="currentWeatherIcon">
-      <img :src="getIcon">
+      <img :src="getIcon" />
     </div>
     <div id="weatherDescription">{{ weatherDescription }}</div>
-    <div id="temperatureColumn"><img class="icon" src="../assets/icons/temp.png"> Temperature</div>
-    <div id="humidityColumn"><img class="icon" src="../assets/icons/humidity.png"> Humidity</div>
-    <div id="windColumn"><img class="icon" src="../assets/icons/wind.png"> Wind Speed</div>
-    <div id="cloudColumn"><img class="icon" src="../assets/icons/clouds.png"> Clouds</div>
-    <div id="currentTemp">Current: {{ Math.round(weatherData.temperature) }}°C</div>
-    <div id="feelsLike">Feels like: {{ Math.round(weatherData.feels_like) }}°C</div>
-    <div id="humidity">{{ weatherData.humidity }}%</div>
-    <div id="wind">{{ weatherData.wind_speed }} m/s</div>
-    <div id="cloud">{{ weatherData.clouds }}%</div>
+    <div id="currentTemp">
+      <h3>{{ Math.round(weatherData.temperature) }}°</h3>
+    </div>
+
+    <section id="box">
+      <div id="windColumn">
+        <h3 class="box-title">Wind Speed</h3>
+        <img class="icon" src="../assets/icons/wind.png" />
+        <div id="wind">{{ weatherData.wind_speed }} m/s</div>
+      </div>
+      <div id="humidityColumn">
+        <h3 class="box-title">Humidity</h3>
+        <img class="icon" src="../assets/icons/humidity.png" />
+        <div id="humidity">{{ weatherData.humidity }}%</div>
+      </div>
+      <div id="temperatureColumn">
+        <h3 class="box-title">Feels like</h3>
+        <img class="icon" src="../assets/icons/temp.png" />
+        <div id="feelsLike">{{ Math.round(weatherData.feels_like) }}°C</div>
+      </div>
+      <div id="cloudColumn">
+        <h3 class="box-title">Clouds</h3>
+        <img class="icon" src="../assets/icons/clouds.png" />
+        <div id="cloud">{{ weatherData.clouds }}%</div>
+      </div>
+    </section>
   </section>
 </template>
 
@@ -32,32 +50,44 @@ export default {
       const descriptionCapitalized = words.join(" ");
       return descriptionCapitalized;
     },
-    getIcon(){
+    getIcon() {
       // the require is needed to let know webpack that this is a url.
-      return require(`../assets/icons/${this.weatherData.icon}.png` );
-    }
+      return require(`../assets/icons/${this.weatherData.icon}.png`);
+    },
+    todayDate() {
+      const dateNow = new Date();
+      // const month = dateNow.getUTCMonth();
+      // const day = dateNow.getUTCDay();
+      return `${dateNow.toLocaleString("en-US", {
+        month: "short",
+      })} ${dateNow.getUTCDate()}, ${dateNow.getUTCFullYear()} (UTC)`;
+    },
   },
 };
 </script>
 
 <style scoped>
 * {
-  color: rgb(240, 231, 231);
+  color: #fcfefc;
 }
 #weatherDisplay {
   display: grid;
   grid-template-areas:
-    "cityName cityName cityName cityName"
-    "icon icon icon icon"
-    "weatherDescription weatherDescription weatherDescription weatherDescription"
-    "temperatureColumn humidityColumn windColumn cloudColumn"
-    "currentTemp humidity wind cloud"
-    "feelsLike humidity wind cloud";
+    "date"
+    "cityName"
+    "icon"
+    "weatherDescription"
+    "currentTemp"
+    "box";
   place-items: center;
   justify-content: center;
   gap: 2rem;
   font-size: 30px;
   margin-bottom: 3rem;
+}
+
+#date {
+  grid-area: date;
 }
 
 #cityName {
@@ -74,20 +104,62 @@ export default {
 #weatherDescription {
   grid-area: weatherDescription;
 }
-#temperatureColumn {
-  grid-area: temperatureColumn;
+#currentTemp {
+  grid-area: currentTemp;
+}
+@import url("https://fonts.googleapis.com/css2?family=Cairo&display=swap");
+#currentTemp h3 {
+  font-family: "Cairo", sans-serif;
+  color: #c5d9f7;
+  font-size: 150px;
+  padding-left: 20%;
+}
+#box {
+  display: flex;
+  place-items: center;
+  justify-content: center;
+  grid-area: box;
+  background: linear-gradient(to right, #2c4373 0%, #3a5286 50%, #2c4373 100%);
+  padding: 2rem;
+  border-radius: 25px;
+}
+
+#windColumn {
+  grid-area: windColumn;
+  display: flex;
+  flex-direction: column;
+  place-items: center;
+  justify-content: center;
+  margin: 0px 2rem;
 }
 #humidityColumn {
   grid-area: humidityColumn;
+  display: flex;
+  flex-direction: column;
+  place-items: center;
+  justify-content: center;
+  margin: 0px 2rem;
 }
-#windColumn {
-  grid-area: windColumn;
+#temperatureColumn {
+  grid-area: temperatureColumn;
+  display: flex;
+  flex-direction: column;
+  place-items: center;
+  justify-content: center;
+  margin: 0px 2rem;
 }
 #cloudColumn {
   grid-area: cloudColumn;
+  display: flex;
+  flex-direction: column;
+  place-items: center;
+  justify-content: center;
+  margin: 0px 2rem;
 }
-#currentTemp {
-  grid-area: currentTemp;
+
+.box-title {
+  color: #97a9c7;
+  margin-bottom: 1rem;
 }
 #feelsLike {
   grid-area: feelsLike;
@@ -105,24 +177,35 @@ export default {
 .icon {
   width: 30px;
   height: 30px;
+  margin-bottom: 1rem;
 }
-@media screen and (max-width:400px) {
-  #weatherDisplay{
-    grid-template-areas:
-    "cityName cityName"
-    "icon icon"
-    "weatherDescription weatherDescription"
-    "temperatureColumn currentTemp"
-    "temperatureColumn feelsLike"
-    "humidityColumn humidity"
-    "windColumn wind"
-    "cloudColumn cloud"
+@media screen and (max-width: 900px) {
+  #box {
+    transform: scale(0.9);
   }
-  #weatherDisplay * {
-    font-size: 20px;
-  }
-  #cityName {
-  font-size: 35px;
 }
+@media screen and (max-width: 600px) {
+  #box {
+    transform: scale(0.7);
+  }
+}
+
+@media screen and (max-width: 500px) {
+  #box {
+    flex-direction: column;
+    transform: scale(1);
+    width: 60vw;
+  }
+  #windColumn,
+  #humidityColumn,
+  #temperatureColumn,
+  #cloudColumn {
+    margin: 2rem 0px;
+  }
+}
+@media screen and (max-width: 450px) {
+  #box {
+    min-width: 250px;
+  }
 }
 </style>
